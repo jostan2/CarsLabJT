@@ -36,8 +36,25 @@ namespace CarsLabJT
                 Console.WriteLine();
 
                 Console.WriteLine("Which car would you like to buy? Please select by index 1-7");
-                int userinput = int.Parse(Console.ReadLine());
-                Console.WriteLine();
+
+                int userinput = -1;
+				while (userinput == -1)
+				{
+					try
+					{
+						userinput = int.Parse(Console.ReadLine());
+					}
+					catch (FormatException)
+					{
+						Console.WriteLine("that wasnt an index in our system! try again");
+					}
+                    if (!(userinput <= carsInventory.Count && userinput > 0))
+                    {
+						Console.WriteLine("that wasnt an index in our system! try again");
+						userinput = -1;
+					}
+				}
+				Console.WriteLine();
                 Console.WriteLine(carsInventory.ElementAt(userinput-1).ToString()); //prints out user's selection
                 Console.WriteLine();
 
