@@ -36,10 +36,30 @@ namespace CarsLabJT
                 Console.WriteLine();
 
                 Console.WriteLine("Which car would you like to buy? Please select by index 1-7");
-                int userinput = int.Parse(Console.ReadLine());
-                Console.WriteLine();
-                Console.WriteLine(carsInventory.ElementAt(userinput-1).ToString()); //prints out user's selection
-                Console.WriteLine();
+
+                try
+                {
+                    int userinput = int.Parse(Console.ReadLine());
+
+                    if (userinput > 0 && userinput < 8)
+                    {
+                        Console.WriteLine(carsInventory.ElementAt(userinput - 1).ToString()); //prints out user's selection
+                        Console.WriteLine();
+                    }
+                    else
+                    {
+                        Console.WriteLine("Your input was not a valid number, please try again. Enter a number between 1-7.");
+                        Console.WriteLine();
+                        continue;
+                    }                        
+                }
+                catch (FormatException e)
+                {
+                    Console.WriteLine("Your input was not a valid number please try again, the valid range for indexes is 1 to 7.");
+                    Console.WriteLine(e.Message);
+                    continue;
+                    Console.WriteLine();
+                }
 
                 //remove car from list
                 Console.WriteLine("Which car would you like to remove? Please select by index. Type 0 to quit.");
